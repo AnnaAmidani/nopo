@@ -9,6 +9,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavender)', 'var(--accent-peach)'];
 ---
 
 <!doctype html>
@@ -19,13 +21,18 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-			<h1>Blog</h1>
+			<h1>All Posts</h1>
 			<ul>
-				{posts.map((post) => (
+				{posts.map((post, i) => (
 					<li>
-						<a href={`/blog/${post.id}/`}>
-							<span class="post-title">{post.data.title}</span>
-							<span class="post-date"><FormattedDate date={post.data.pubDate} /></span>
+						<a href={`/blog/${post.id}/`} style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
+							<div class="card-meta">
+								<FormattedDate date={post.data.pubDate} />
+							</div>
+							<div class="card-title">{post.data.title}</div>
+							{post.data.description && (
+								<div class="card-desc">{post.data.description}</div>
+							)}
 						</a>
 					</li>
 				))}
@@ -37,36 +44,53 @@ const posts = (await getCollection('blog')).sort(
 
 <style>
 	h1 {
+		font-style: italic;
 		margin-bottom: 2rem;
 	}
 	ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 	}
 	ul li a {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		gap: 1rem;
-		padding: 0.75rem 0;
-		border-bottom: 1px solid var(--border);
-		color: var(--text);
+		display: block;
+		padding: 1.25rem 1.5rem;
+		background: var(--bg-card);
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		border-left: 4px solid var(--card-accent);
+		text-decoration: none;
+		color: inherit;
+		box-shadow: var(--shadow);
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+	ul li a:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-hover);
 		text-decoration: none;
 	}
-	ul li:first-child a {
-		border-top: 1px solid var(--border);
-	}
-	ul li a:hover .post-title {
-		color: var(--accent);
-	}
-	.post-title {
-		font-size: 0.95rem;
-	}
-	.post-date {
-		font-size: 0.8rem;
+	.card-meta {
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 		color: var(--text-muted);
-		white-space: nowrap;
-		flex-shrink: 0;
+		margin-bottom: 0.35rem;
+	}
+	.card-title {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: 1.4rem;
+		font-weight: 600;
+		color: var(--text);
+		line-height: 1.3;
+		margin-bottom: 0.35rem;
+	}
+	.card-desc {
+		font-size: 0.88rem;
+		color: var(--text-muted);
+		line-height: 1.5;
 	}
 </style>

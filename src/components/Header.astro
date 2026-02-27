@@ -5,18 +5,26 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav>
-		<a href="/" class="site-title">{SITE_TITLE}</a>
+		<a href="/" class="site-title">
+			<span class="title-text">{SITE_TITLE}</span>
+		</a>
 		<div class="nav-links">
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 	</nav>
+	<div class="header-stripe"></div>
 </header>
 
 <style>
 	header {
+		background: rgba(254, 252, 248, 0.92);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		position: sticky;
+		top: 0;
+		z-index: 100;
 		border-bottom: 1px solid var(--border);
-		background: var(--bg);
 	}
 	nav {
 		display: flex;
@@ -25,32 +33,49 @@ import HeaderLink from './HeaderLink.astro';
 		width: var(--max-width);
 		max-width: calc(100% - 2rem);
 		margin: 0 auto;
-		height: 56px;
+		height: 64px;
 	}
 	.site-title {
-		font-weight: 700;
-		font-size: 1rem;
-		color: var(--text);
 		text-decoration: none;
-		letter-spacing: -0.01em;
 	}
-	.site-title:hover {
+	.title-text {
+		font-family: 'Cormorant Garamond', serif;
+		font-weight: 600;
+		font-style: italic;
+		font-size: 1.65rem;
+		color: var(--text);
+		letter-spacing: 0.02em;
+		transition: color 0.2s;
+	}
+	.site-title:hover .title-text {
+		color: var(--accent);
 		text-decoration: none;
-		opacity: 0.75;
 	}
 	.nav-links {
 		display: flex;
-		gap: 1.5rem;
+		gap: 0.5rem;
 	}
 	.nav-links :global(a) {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 		color: var(--text-muted);
 		text-decoration: none;
-		transition: color 0.15s;
+		padding: 0.35rem 0.9rem;
+		border-radius: 99px;
+		border: 1px solid transparent;
+		transition: all 0.2s;
 	}
 	.nav-links :global(a:hover),
 	.nav-links :global(a.active) {
-		color: var(--text);
+		color: var(--accent);
+		border-color: var(--border);
+		background: var(--bg-card);
 		text-decoration: none;
+	}
+	.header-stripe {
+		height: 3px;
+		background: linear-gradient(to right, var(--accent), var(--accent-lavender), var(--accent-sage), var(--accent-peach));
 	}
 </style>

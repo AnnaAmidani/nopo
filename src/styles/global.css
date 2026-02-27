@@ -1,22 +1,28 @@
 :root {
-	--accent: #2563eb;
-	--text: #1a1a1a;
-	--text-muted: #6b7280;
-	--bg: #ffffff;
-	--bg-subtle: #f9fafb;
-	--border: #e5e7eb;
-	--max-width: 680px;
-}
+	/* Pastel palette — warm white base */
+	--bg: #FEFCF8;
+	--bg-card: #FFFFFF;
+	--bg-subtle: #FDF5EC;
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--accent: #60a5fa;
-		--text: #e8e8e8;
-		--text-muted: #9ca3af;
-		--bg: #111111;
-		--bg-subtle: #1a1a1a;
-		--border: #2a2a2a;
-	}
+	/* Accent colors */
+	--accent: #C4607F;
+	--accent-sage: #5E9B86;
+	--accent-lavender: #8472B2;
+	--accent-peach: #CB7A52;
+
+	/* Text */
+	--text: #271C17;
+	--text-muted: #9A8479;
+
+	/* Borders & shadows */
+	--border: #EBE0D5;
+	--shadow: 0 2px 16px rgba(39, 28, 23, 0.06);
+	--shadow-hover: 0 6px 28px rgba(39, 28, 23, 0.12);
+
+	/* Layout */
+	--max-width: 840px;
+	--radius: 16px;
+	--radius-sm: 8px;
 }
 
 *, *::before, *::after {
@@ -24,13 +30,16 @@
 }
 
 body {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font-family: 'Nunito', system-ui, sans-serif;
+	font-weight: 400;
 	margin: 0;
 	padding: 0;
-	background: var(--bg);
+	background-color: var(--bg);
+	background-image: radial-gradient(circle at 1px 1px, rgba(196, 96, 127, 0.10) 1px, transparent 0);
+	background-size: 28px 28px;
 	color: var(--text);
 	font-size: 17px;
-	line-height: 1.75;
+	line-height: 1.8;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -38,36 +47,41 @@ main {
 	width: var(--max-width);
 	max-width: calc(100% - 2rem);
 	margin: 0 auto;
-	padding: 3rem 0;
+	padding: 3rem 0 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
+	font-family: 'Cormorant Garamond', Georgia, serif;
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: 0.01em;
 	margin: 0 0 0.5em;
-	line-height: 1.25;
-	font-weight: 700;
-	letter-spacing: -0.02em;
+	color: var(--text);
 }
 
-h1 { font-size: 2rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.25rem; }
-h4 { font-size: 1.1rem; }
+h1 { font-size: 2.75rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
 
 p {
 	margin: 0 0 1.25em;
 }
 
 .prose p {
-	margin-bottom: 1.5em;
+	margin-bottom: 1.6em;
 }
 
 a {
 	color: var(--accent);
 	text-decoration: none;
+	transition: color 0.15s;
 }
 
 a:hover {
 	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2px;
 }
 
 strong, b {
@@ -77,44 +91,51 @@ strong, b {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 6px;
+	border-radius: var(--radius-sm);
 }
 
 hr {
 	border: none;
 	border-top: 1px solid var(--border);
-	margin: 2rem 0;
+	margin: 2.5rem 0;
 }
 
 blockquote {
-	border-left: 3px solid var(--border);
-	margin: 1.5em 0;
-	padding: 0.25em 0 0.25em 1.25em;
+	border-left: 3px solid var(--accent);
+	margin: 2em 0;
+	padding: 0.5em 0 0.5em 1.5em;
 	color: var(--text-muted);
 	font-style: italic;
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 1.15em;
+	line-height: 1.6;
+	background: linear-gradient(to right, rgba(196, 96, 127, 0.04), transparent);
+	border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 code {
 	font-family: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
-	font-size: 0.875em;
-	padding: 0.15em 0.4em;
-	background: var(--bg-subtle);
-	border: 1px solid var(--border);
-	border-radius: 4px;
+	font-size: 0.85em;
+	padding: 0.15em 0.45em;
+	background: #FEF0F3;
+	border: 1px solid rgba(196, 96, 127, 0.2);
+	border-radius: 5px;
+	color: var(--accent);
 }
 
 pre {
 	background: var(--bg-subtle);
 	border: 1px solid var(--border);
-	border-radius: 8px;
-	padding: 1.25em 1.5em;
+	border-radius: var(--radius-sm);
+	padding: 1.5em;
 	overflow-x: auto;
 	font-size: 0.875em;
-	line-height: 1.6;
+	line-height: 1.65;
 }
 
 pre > code {
 	all: unset;
+	color: var(--text);
 }
 
 table {
@@ -124,7 +145,7 @@ table {
 }
 
 th, td {
-	padding: 0.5em 0.75em;
+	padding: 0.6em 0.9em;
 	border: 1px solid var(--border);
 	text-align: left;
 }
@@ -132,17 +153,20 @@ th, td {
 th {
 	background: var(--bg-subtle);
 	font-weight: 600;
+	font-family: 'Cormorant Garamond', serif;
 }
 
 textarea, input {
 	font-size: 16px;
+	font-family: inherit;
 	width: 100%;
 }
 
 @media (max-width: 680px) {
 	body { font-size: 16px; }
-	main { padding: 2rem 0; }
-	h1 { font-size: 1.65rem; }
+	main { padding: 2rem 0 4rem; }
+	h1 { font-size: 2rem; }
+	h2 { font-size: 1.6rem; }
 }
 
 .sr-only {

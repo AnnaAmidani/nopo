@@ -3,21 +3,38 @@ const today = new Date();
 ---
 
 <footer>
-	<span>&copy; {today.getFullYear()} nopo</span>
+	<div class="footer-inner">
+		<span class="ornament">✦</span>
+		<span class="copyright">&copy; {today.getFullYear()} nopo</span>
+	</div>
 </footer>
 
 <style>
 	footer {
+		margin-top: 6rem;
+		padding: 2.5rem 0;
+		background: linear-gradient(to bottom, transparent, var(--bg-subtle));
 		border-top: 1px solid var(--border);
-		padding: 2rem 0;
-		margin-top: 4rem;
 	}
-	footer span {
-		display: block;
+	.footer-inner {
 		width: var(--max-width);
 		max-width: calc(100% - 2rem);
 		margin: 0 auto;
-		font-size: 0.85rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.ornament {
+		font-size: 1rem;
+		color: var(--accent);
+		opacity: 0.5;
+	}
+	.copyright {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
 		color: var(--text-muted);
 	}
 </style>
