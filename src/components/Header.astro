@@ -1,61 +1,51 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { CATEGORIES, SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
-	<nav>
-		<a href="/" class="site-title">
-			<span class="title-text">{SITE_TITLE}</span>
-		</a>
-		<div class="nav-links">
-			<HeaderLink href="/blog">Blog</HeaderLink>
+	<div class="banner">
+		<div class="banner-top">
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-	</nav>
-	<div class="header-stripe"></div>
+		<a href="/" class="site-title">{SITE_TITLE}</a>
+	</div>
+	<div class="sticky-bar">
+		<div class="header-stripe"></div>
+		<div class="category-bar">
+			<div class="category-bar-inner">
+				<HeaderLink href="/blog">All</HeaderLink>
+				{CATEGORIES.map(({ slug, label }) => (
+					<HeaderLink href={`/${slug}`}>{label}</HeaderLink>
+				))}
+			</div>
+		</div>
+	</div>
 </header>
 
 <style>
-	header {
-		background: rgba(254, 252, 248, 0.92);
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
-		position: sticky;
-		top: 0;
-		z-index: 100;
-		border-bottom: 1px solid var(--border);
-	}
-	nav {
+	/* ── Banner (scrolls away) ─────────────────────────────── */
+	.banner {
+		min-height: 200px;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		justify-content: space-between;
-		width: var(--max-width);
-		max-width: calc(100% - 2rem);
-		margin: 0 auto;
-		height: 64px;
+		justify-content: center;
+		position: relative;
+		background-color: var(--bg);
+		/* Ready for a background image:
+		   background-image: url('/your-image.jpg');
+		   background-size: cover;
+		   background-position: center; */
+		border-bottom: 1px solid var(--border);
+		padding: 2rem 1rem 2.5rem;
 	}
-	.site-title {
-		text-decoration: none;
+	.banner-top {
+		position: absolute;
+		top: 1rem;
+		right: 1.5rem;
 	}
-	.title-text {
-		font-family: 'Cormorant Garamond', serif;
-		font-weight: 600;
-		font-style: italic;
-		font-size: 1.65rem;
-		color: var(--text);
-		letter-spacing: 0.02em;
-		transition: color 0.2s;
-	}
-	.site-title:hover .title-text {
-		color: var(--accent);
-		text-decoration: none;
-	}
-	.nav-links {
-		display: flex;
-		gap: 0.5rem;
-	}
-	.nav-links :global(a) {
+	.banner-top :global(a) {
 		font-size: 0.8rem;
 		font-weight: 700;
 		letter-spacing: 0.08em;
@@ -67,15 +57,74 @@ import HeaderLink from './HeaderLink.astro';
 		border: 1px solid transparent;
 		transition: all 0.2s;
 	}
-	.nav-links :global(a:hover),
-	.nav-links :global(a.active) {
+	.banner-top :global(a:hover),
+	.banner-top :global(a.active) {
 		color: var(--accent);
 		border-color: var(--border);
 		background: var(--bg-card);
 		text-decoration: none;
 	}
+	.site-title {
+		font-family: 'Outfit', system-ui, sans-serif;
+		font-weight: 700;
+		font-size: clamp(2.5rem, 6vw, 4rem);
+		letter-spacing: -0.03em;
+		color: var(--text);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+	.site-title:hover {
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	/* ── Sticky bar (stays on scroll) ─────────────────────── */
+	.sticky-bar {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: rgba(254, 252, 248, 0.92);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--border);
+	}
 	.header-stripe {
 		height: 3px;
 		background: linear-gradient(to right, var(--accent), var(--accent-lavender), var(--accent-sage), var(--accent-peach));
+	}
+	.category-bar-inner {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		width: var(--max-width);
+		max-width: calc(100% - 2rem);
+		margin: 0 auto;
+		height: 40px;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+	.category-bar-inner::-webkit-scrollbar {
+		display: none;
+	}
+	.category-bar :global(a) {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		text-decoration: none;
+		padding: 0.25rem 0.75rem;
+		border-radius: 99px;
+		border: 1px solid transparent;
+		white-space: nowrap;
+		transition: all 0.2s;
+		flex-shrink: 0;
+	}
+	.category-bar :global(a:hover),
+	.category-bar :global(a.active) {
+		color: var(--accent);
+		border-color: var(--border);
+		background: var(--bg-card);
+		text-decoration: none;
 	}
 </style>
