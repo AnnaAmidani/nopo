@@ -1,10 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
 import { CATEGORIES, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import PageLayout from '../layouts/PageLayout.astro';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -13,14 +11,8 @@ const posts = (await getCollection('blog'))
 const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavender)', 'var(--accent-peach)'];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
+<PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<main>
 			<section class="hero">
 				<p class="eyebrow">Welcome to</p>
 				<h1>{SITE_TITLE}</h1>
@@ -51,10 +43,8 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 				</ul>
 				<a href="/blog" class="all-posts">All posts →</a>
 			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+	</main>
+</PageLayout>
 
 <style>
 	.hero {
