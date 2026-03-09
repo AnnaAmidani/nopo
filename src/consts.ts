@@ -9,7 +9,7 @@ export const CATEGORIES = [
 	{ slug: 'investing', label: 'Investing' },
 	{ slug: 'music', label: 'Music' },
 	{ slug: 'films', label: 'Films' },
-	{ slug: 'culture', label: 'Culture & Fun Facts' },
+	{ slug: 'culture', label: 'Culture' },
 ] as const;
 
 export type CategorySlug = (typeof CATEGORIES)[number]['slug'];
