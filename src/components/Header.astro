@@ -32,7 +32,7 @@ import HeaderLink from './HeaderLink.astro';
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		background-color: var(--bg);
+		background-color: #005461;
 		/* Ready for a background image:
 		   background-image: url('/your-image.jpg');
 		   background-size: cover;
@@ -49,7 +49,7 @@ import HeaderLink from './HeaderLink.astro';
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: var(--text-muted);
+		color: rgba(255, 255, 255, 0.5);
 		text-decoration: none;
 		padding: 0.35rem 0.9rem;
 		border-radius: 99px;
@@ -58,9 +58,9 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	.banner-top :global(a:hover),
 	.banner-top :global(a.active) {
-		color: var(--accent);
-		border-color: var(--border);
-		background: var(--bg-card);
+		color: white;
+		border-color: rgba(255, 255, 255, 0.2);
+		background: rgba(255, 255, 255, 0.08);
 		text-decoration: none;
 	}
 	.site-title {
@@ -68,7 +68,7 @@ import HeaderLink from './HeaderLink.astro';
 		font-weight: 700;
 		font-size: clamp(2.5rem, 6vw, 4rem);
 		letter-spacing: -0.03em;
-		color: var(--text);
+		color: white;
 		text-decoration: none;
 		transition: color 0.2s;
 	}
@@ -82,21 +82,20 @@ import HeaderLink from './HeaderLink.astro';
 		position: sticky;
 		top: 0;
 		z-index: 100;
-		background: rgba(254, 252, 248, 0.92);
+		background: linear-gradient(to right, rgba(180, 230, 225, 0.95), rgba(237, 247, 189, 0.95));
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
 		border-bottom: 1px solid var(--border);
 	}
 	.header-stripe {
 		height: 3px;
-		background: linear-gradient(to right, var(--accent), var(--accent-lavender), var(--accent-sage), var(--accent-peach));
+		background: linear-gradient(to right, var(--accent), var(--accent-lavender), var(--accent-sage), var(--accent-lime));
 	}
 	.category-bar-inner {
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
-		width: var(--max-width);
-		max-width: calc(100% - 2rem);
+		width: min(1100px, calc(100% - 2rem));
 		margin: 0 auto;
 		height: 40px;
 		overflow-x: auto;
@@ -106,14 +105,14 @@ import HeaderLink from './HeaderLink.astro';
 		display: none;
 	}
 	.category-bar :global(a) {
-		font-size: 0.75rem;
-		font-weight: 700;
+		font-size: 0.85rem;
+		font-weight: 800;
 		letter-spacing: 0.07em;
 		text-transform: uppercase;
 		color: var(--text-muted);
 		text-decoration: none;
 		padding: 0.25rem 0.75rem;
-		border-radius: 99px;
+		border-radius: 6px;
 		border: 1px solid transparent;
 		white-space: nowrap;
 		transition: all 0.2s;
@@ -121,9 +120,9 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	.category-bar :global(a:hover),
 	.category-bar :global(a.active) {
-		color: var(--accent);
-		border-color: var(--border);
-		background: var(--bg-card);
+		color: white;
+		border-color: transparent;
+		background: #0E8F8F;
 		text-decoration: none;
 	}
 </style>

@@ -1,23 +1,24 @@
 :root {
-	/* Pastel palette — warm white base */
-	--bg: #FEFCF8;
+	/* Teal palette */
+	--bg: #F0FAFA;
 	--bg-card: #FFFFFF;
-	--bg-subtle: #FDF5EC;
+	--bg-subtle: #E2F5F3;
 
-	/* Accent colors */
-	--accent: #C4607F;
-	--accent-sage: #5E9B86;
-	--accent-lavender: #8472B2;
-	--accent-peach: #CB7A52;
+	/* Accent colors — lightest to darkest */
+	--accent: #0C7779;
+	--accent-sage: #249E94;
+	--accent-lavender: #3BC1A8;
+	--accent-peach: #005461;
+	--accent-lime: #EDF7BD;
 
 	/* Text */
-	--text: #271C17;
-	--text-muted: #9A8479;
+	--text: #005461;
+	--text-muted: #249E94;
 
 	/* Borders & shadows */
-	--border: #EBE0D5;
-	--shadow: 0 2px 16px rgba(39, 28, 23, 0.06);
-	--shadow-hover: 0 6px 28px rgba(39, 28, 23, 0.12);
+	--border: #B8E4E2;
+	--shadow: 0 2px 16px rgba(0, 84, 97, 0.06);
+	--shadow-hover: 0 6px 28px rgba(0, 84, 97, 0.12);
 
 	/* Layout */
 	--max-width: 840px;
@@ -35,7 +36,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: var(--bg);
-	background-image: radial-gradient(circle at 1px 1px, rgba(196, 96, 127, 0.10) 1px, transparent 0);
+	background-image: radial-gradient(circle at 1px 1px, rgba(12, 119, 121, 0.08) 1px, transparent 0);
 	background-size: 28px 28px;
 	color: var(--text);
 	font-size: 17px;
@@ -107,7 +108,7 @@ blockquote {
 	font-style: italic;
 	font-size: 1.05em;
 	line-height: 1.6;
-	background: linear-gradient(to right, rgba(196, 96, 127, 0.04), transparent);
+	background: linear-gradient(to right, rgba(12, 119, 121, 0.04), transparent);
 	border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
@@ -115,8 +116,8 @@ code {
 	font-family: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
 	font-size: 0.85em;
 	padding: 0.15em 0.45em;
-	background: #FEF0F3;
-	border: 1px solid rgba(196, 96, 127, 0.2);
+	background: rgba(59, 193, 168, 0.1);
+	border: 1px solid rgba(12, 119, 121, 0.2);
 	border-radius: 5px;
 	color: var(--accent);
 }
