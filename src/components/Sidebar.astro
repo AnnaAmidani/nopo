@@ -1,0 +1,86 @@
+---
+import { SIDEBAR_LINKS } from '../data/links';
+---
+
+<aside class="sidebar">
+	{SIDEBAR_LINKS.map(({ section, links }) => (
+		<div class="sidebar-group">
+			<p class="sidebar-label">{section}</p>
+			<ul>
+				{links.map(({ label, url, description }) => (
+					<li>
+						<a href={url} target="_blank" rel="noopener noreferrer">
+							{label}
+						</a>
+						{description && <span class="link-desc">{description}</span>}
+					</li>
+				))}
+			</ul>
+		</div>
+	))}
+</aside>
+
+<style>
+	.sidebar {
+		position: sticky;
+		top: 4rem; /* clears the sticky category bar height */
+		align-self: start;
+		padding-top: 3rem;
+	}
+	.sidebar-group {
+		margin-bottom: 2rem;
+	}
+	.sidebar-label {
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin: 0 0 0.6rem;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+	a {
+		font-size: 0.9rem;
+		color: var(--text);
+		text-decoration: none;
+		transition: color 0.15s;
+		display: block;
+	}
+	a:hover {
+		color: var(--accent);
+		text-decoration: none;
+	}
+	.link-desc {
+		display: block;
+		font-size: 0.78rem;
+		color: var(--text-muted);
+		line-height: 1.4;
+		margin-top: 0.1rem;
+	}
+
+	/* Mobile: card style per group */
+	@media (max-width: 1024px) {
+		.sidebar {
+			position: static;
+			padding-top: 0;
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+			gap: 1rem;
+		}
+		.sidebar-group {
+			margin-bottom: 0;
+			background: var(--bg-card);
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			padding: 1.25rem 1.5rem;
+		}
+	}
+</style>

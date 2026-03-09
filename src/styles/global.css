@@ -44,17 +44,16 @@ body {
 }
 
 main {
-	width: var(--max-width);
-	max-width: calc(100% - 2rem);
-	margin: 0 auto;
+	width: 100%;
+	min-width: 0; /* prevents grid blowout on narrow viewports */
 	padding: 3rem 0 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Cormorant Garamond', Georgia, serif;
+	font-family: 'Outfit', system-ui, sans-serif;
 	font-weight: 600;
 	line-height: 1.2;
-	letter-spacing: 0.01em;
+	letter-spacing: -0.01em;
 	margin: 0 0 0.5em;
 	color: var(--text);
 }
@@ -106,8 +105,7 @@ blockquote {
 	padding: 0.5em 0 0.5em 1.5em;
 	color: var(--text-muted);
 	font-style: italic;
-	font-family: 'Cormorant Garamond', serif;
-	font-size: 1.15em;
+	font-size: 1.05em;
 	line-height: 1.6;
 	background: linear-gradient(to right, rgba(196, 96, 127, 0.04), transparent);
 	border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
@@ -153,7 +151,6 @@ th, td {
 th {
 	background: var(--bg-subtle);
 	font-weight: 600;
-	font-family: 'Cormorant Garamond', serif;
 }
 
 textarea, input {

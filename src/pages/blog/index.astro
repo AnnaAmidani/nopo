@@ -1,10 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { CATEGORIES, SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import PageLayout from '../../layouts/PageLayout.astro';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -13,14 +11,8 @@ const posts = (await getCollection('blog')).sort(
 const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavender)', 'var(--accent-peach)'];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={`Blog — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
+<PageLayout title={`Blog — ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+	<main>
 			<h1>All Posts</h1>
 			<ul>
 				{posts.map((post, i) => (
@@ -28,6 +20,11 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 						<a href={`/blog/${post.id}/`} style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
 							<div class="card-meta">
 								<FormattedDate date={post.data.pubDate} />
+								{post.data.category && (
+									<a href={`/${post.data.category}`} class="category-badge" onclick="event.stopPropagation()">
+										{CATEGORIES.find((c) => c.slug === post.data.category)?.label}
+									</a>
+								)}
 							</div>
 							<div class="card-title">{post.data.title}</div>
 							{post.data.description && (
@@ -37,14 +34,11 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 					</li>
 				))}
 			</ul>
-		</main>
-		<Footer />
-	</body>
-</html>
+	</main>
+</PageLayout>
 
 <style>
 	h1 {
-		font-style: italic;
 		margin-bottom: 2rem;
 	}
 	ul {
@@ -73,12 +67,32 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 		text-decoration: none;
 	}
 	.card-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
 		font-size: 0.72rem;
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--text-muted);
 		margin-bottom: 0.35rem;
+	}
+	.category-badge {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		color: var(--accent);
+		background: rgba(196, 96, 127, 0.08);
+		border: 1px solid rgba(196, 96, 127, 0.2);
+		border-radius: 99px;
+		padding: 0.1rem 0.55rem;
+		text-decoration: none;
+		transition: background 0.15s;
+	}
+	.category-badge:hover {
+		background: rgba(196, 96, 127, 0.15);
+		text-decoration: none;
 	}
 	.card-title {
 		font-family: 'Cormorant Garamond', serif;
