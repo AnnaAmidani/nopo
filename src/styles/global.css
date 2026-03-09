@@ -44,9 +44,8 @@ body {
 }
 
 main {
-	width: var(--max-width);
-	max-width: calc(100% - 2rem);
-	margin: 0 auto;
+	width: 100%;
+	min-width: 0; /* prevents grid blowout on narrow viewports */
 	padding: 3rem 0 5rem;
 }
 
