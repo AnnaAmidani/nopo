@@ -8,7 +8,7 @@ const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 5);
 
-const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavender)', 'var(--accent-peach)'];
+const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavender)', 'var(--accent-peach)', 'var(--accent-lime)'];
 ---
 
 <PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -133,19 +133,19 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 		letter-spacing: 0.07em;
 		text-transform: uppercase;
 		color: var(--accent);
-		background: rgba(196, 96, 127, 0.08);
-		border: 1px solid rgba(196, 96, 127, 0.2);
+		background: rgba(12, 119, 121, 0.08);
+		border: 1px solid rgba(12, 119, 121, 0.2);
 		border-radius: 99px;
 		padding: 0.1rem 0.55rem;
 		text-decoration: none;
 		transition: background 0.15s;
 	}
 	.category-badge:hover {
-		background: rgba(196, 96, 127, 0.15);
+		background: rgba(12, 119, 121, 0.15);
 		text-decoration: none;
 	}
 	.card-title {
-		font-family: 'Cormorant Garamond', serif;
+		font-family: 'Outfit', system-ui, sans-serif;
 		font-size: 1.4rem;
 		font-weight: 600;
 		color: var(--text);

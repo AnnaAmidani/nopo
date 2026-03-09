@@ -28,14 +28,19 @@ import { SIDEBAR_LINKS } from '../data/links';
 		padding-top: 3rem;
 	}
 	.sidebar-group {
-		margin-bottom: 2rem;
+		margin-bottom: 0;
+		padding: 1.25rem 0;
+		border-top: 1px solid var(--border);
+	}
+	.sidebar-group:last-child {
+		border-bottom: 1px solid var(--border);
 	}
 	.sidebar-label {
-		font-size: 0.7rem;
-		font-weight: 700;
+		font-size: 0.8rem;
+		font-weight: 800;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: var(--text-muted);
+		color: var(--text);
 		margin: 0 0 0.6rem;
 	}
 	ul {

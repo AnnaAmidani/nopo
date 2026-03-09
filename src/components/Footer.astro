@@ -3,38 +3,77 @@ const today = new Date();
 ---
 
 <footer>
+	<div class="footer-stripe"></div>
 	<div class="footer-inner">
-		<span class="ornament">✦</span>
-		<span class="copyright">&copy; {today.getFullYear()} nopo</span>
+		<a href="/" class="footer-title">NoPo</a>
+		<nav class="footer-nav">
+			<a href="/blog">Blog</a>
+			<a href="/about">About</a>
+			<a href="/rss.xml">RSS</a>
+		</nav>
+		<span class="copyright">&copy; {today.getFullYear()} — born North of the Po' Valley</span>
 	</div>
 </footer>
 
 <style>
 	footer {
-		margin-top: 6rem;
-		padding: 2.5rem 0;
-		background: linear-gradient(to bottom, transparent, var(--bg-subtle));
-		border-top: 1px solid var(--border);
+		background-color: #005461;
+		margin-top: 0;
+	}
+	.footer-stripe {
+		height: 3px;
+		background: linear-gradient(to right, var(--accent), var(--accent-lavender), var(--accent-sage), var(--accent-lime));
 	}
 	.footer-inner {
-		width: var(--max-width);
-		max-width: calc(100% - 2rem);
+		width: min(1100px, calc(100% - 2rem));
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 2.5rem 0;
 	}
-	.ornament {
-		font-size: 1rem;
+	.footer-title {
+		font-family: 'Outfit', system-ui, sans-serif;
+		font-weight: 700;
+		font-size: 1.5rem;
+		letter-spacing: -0.02em;
+		color: white;
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+	.footer-title:hover {
 		color: var(--accent);
-		opacity: 0.5;
+		text-decoration: none;
+	}
+	.footer-nav {
+		display: flex;
+		gap: 0.25rem;
+	}
+	.footer-nav a {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+		text-decoration: none;
+		padding: 0.3rem 0.8rem;
+		border-radius: 99px;
+		border: 1px solid transparent;
+		transition: all 0.2s;
+	}
+	.footer-nav a:hover {
+		color: white;
+		border-color: rgba(255, 255, 255, 0.2);
+		background: rgba(255, 255, 255, 0.08);
+		text-decoration: none;
 	}
 	.copyright {
-		font-size: 0.75rem;
+		font-size: 0.72rem;
 		font-weight: 700;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: var(--text-muted);
+		color: rgba(255, 255, 255, 0.3);
 	}
 </style>
