@@ -3,10 +3,12 @@ import { CATEGORIES, SITE_TITLE } from '../consts';
 import { t, type Lang } from '../i18n/translations';
 import HeaderLink from './HeaderLink.astro';
 
-const segments = Astro.url.pathname.split('/').filter(Boolean);
+const base = import.meta.env.BASE_URL.replace(/\/$/, ''); // '' locally, '/nopo' in CI
+const pathname = Astro.url.pathname.replace(base, ''); // strip base prefix
+const segments = pathname.split('/').filter(Boolean);
 const lang: Lang = segments[0] === 'it' ? 'it' : 'en';
 const altLang: Lang = lang === 'en' ? 'it' : 'en';
-const altPath = Astro.url.pathname.replace(/^\/(en|it)/, '/' + altLang) || '/' + altLang + '/';
+const altPath = base + (pathname.replace(/^\/(en|it)/, '/' + altLang) || '/' + altLang + '/');
 const tr = t(lang);
 ---
 
@@ -14,7 +16,7 @@ const tr = t(lang);
 	<div class="banner">
 		<div class="lang-switch">
 			<a
-				href={`/${lang}/`}
+				href={`${base}/${lang}/`}
 				class:list={['lang-btn', 'active']}
 				onclick={`localStorage.setItem('lang','${lang}')`}
 			>{lang.toUpperCase()}</a>
@@ -25,20 +27,20 @@ const tr = t(lang);
 				onclick={`localStorage.setItem('lang','${altLang}')`}
 			>{altLang.toUpperCase()}</a>
 		</div>
-		<a href={`/${lang}/`} class="site-title">{SITE_TITLE}</a>
+		<a href={`${base}/${lang}/`} class="site-title">{SITE_TITLE}</a>
 	</div>
 	<div class="sticky-bar">
 		<div class="header-stripe"></div>
 		<div class="category-bar">
 			<div class="category-bar-inner">
-				<HeaderLink href={`/${lang}/blog`}>{tr.all}</HeaderLink>
+				<HeaderLink href={`${base}/${lang}/blog`}>{tr.all}</HeaderLink>
 				{CATEGORIES.map(({ slug }) => (
-					<HeaderLink href={`/${lang}/${slug}`}>
+					<HeaderLink href={`${base}/${lang}/${slug}`}>
 						{tr.categories[slug]}
 					</HeaderLink>
 				))}
 				<div class="spacer"></div>
-				<HeaderLink href={`/${lang}/about`}>{tr.about}</HeaderLink>
+				<HeaderLink href={`${base}/${lang}/about`}>{tr.about}</HeaderLink>
 			</div>
 		</div>
 	</div>
