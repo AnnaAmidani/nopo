@@ -1,22 +1,44 @@
 ---
 import { CATEGORIES, SITE_TITLE } from '../consts';
+import { t, type Lang } from '../i18n/translations';
 import HeaderLink from './HeaderLink.astro';
+
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const lang: Lang = segments[0] === 'it' ? 'it' : 'en';
+const altLang: Lang = lang === 'en' ? 'it' : 'en';
+const altPath = Astro.url.pathname.replace(/^\/(en|it)/, '/' + altLang) || '/' + altLang + '/';
+const tr = t(lang);
 ---
 
 <header>
 	<div class="banner">
-		<a href="/" class="site-title">{SITE_TITLE}</a>
+		<div class="lang-switch">
+			<a
+				href={`/${lang}/`}
+				class:list={['lang-btn', 'active']}
+				onclick={`localStorage.setItem('lang','${lang}')`}
+			>{lang.toUpperCase()}</a>
+			<span class="lang-sep">/</span>
+			<a
+				href={altPath}
+				class="lang-btn"
+				onclick={`localStorage.setItem('lang','${altLang}')`}
+			>{altLang.toUpperCase()}</a>
+		</div>
+		<a href={`/${lang}/`} class="site-title">{SITE_TITLE}</a>
 	</div>
 	<div class="sticky-bar">
 		<div class="header-stripe"></div>
 		<div class="category-bar">
 			<div class="category-bar-inner">
-				<HeaderLink href="/blog">All</HeaderLink>
-				{CATEGORIES.map(({ slug, label }) => (
-					<HeaderLink href={`/${slug}`}>{label}</HeaderLink>
+				<HeaderLink href={`/${lang}/blog`}>{tr.all}</HeaderLink>
+				{CATEGORIES.map(({ slug }) => (
+					<HeaderLink href={`/${lang}/${slug}`}>
+						{tr.categories[slug]}
+					</HeaderLink>
 				))}
 				<div class="spacer"></div>
-				<HeaderLink href="/about">About</HeaderLink>
+				<HeaderLink href={`/${lang}/about`}>{tr.about}</HeaderLink>
 			</div>
 		</div>
 	</div>
@@ -32,11 +54,33 @@ import HeaderLink from './HeaderLink.astro';
 		justify-content: center;
 		position: relative;
 		background-color: #005461;
-		/* Ready for a background image:
-		   background-image: url('/your-image.jpg');
-		   background-size: cover;
-		   background-position: center; */
 		padding: 2rem 1rem 2.5rem;
+	}
+	.lang-switch {
+		position: absolute;
+		top: 1rem;
+		right: 1.5rem;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+	.lang-btn {
+		font-family: 'Outfit', system-ui, sans-serif;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: rgba(255, 255, 255, 0.45);
+		text-decoration: none;
+		transition: color 0.15s;
+	}
+	.lang-btn:hover,
+	.lang-btn.active {
+		color: white;
+		text-decoration: none;
+	}
+	.lang-sep {
+		font-size: 0.7rem;
+		color: rgba(255, 255, 255, 0.25);
 	}
 	.spacer {
 		flex: 1;

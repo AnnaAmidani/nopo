@@ -1,46 +1,50 @@
 ---
 import { getCollection } from 'astro:content';
-import FormattedDate from '../components/FormattedDate.astro';
-import { CATEGORIES, SITE_TITLE } from '../consts';
-import PageLayout from '../layouts/PageLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { CATEGORIES, SITE_TITLE } from '../../consts';
+import { SUPPORTED_LANGS, t, type Lang } from '../../i18n/translations';
+import PageLayout from '../../layouts/PageLayout.astro';
 
 export function getStaticPaths() {
-	return CATEGORIES.map(({ slug }) => ({ params: { category: slug } }));
+	return SUPPORTED_LANGS.flatMap((lang) =>
+		CATEGORIES.map(({ slug }) => ({ params: { lang, category: slug } }))
+	);
 }
 
-const { category } = Astro.params;
-const categoryMeta = CATEGORIES.find((c) => c.slug === category)!;
+const { lang, category } = Astro.params as { lang: Lang; category: string };
+const tr = t(lang);
+const categoryLabel = tr.categories[category as keyof typeof tr.categories] ?? category;
 
-const allPosts = await getCollection('blog');
-const posts = allPosts
-	.filter((p) => p.data.category === category)
+const posts = (await getCollection('blog'))
+	.filter((p) => p.id.startsWith(lang + '/') && p.data.category === category)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavender)', 'var(--accent-peach)'];
 ---
 
-<PageLayout title={`${categoryMeta.label} — ${SITE_TITLE}`} description={`Posts about ${categoryMeta.label}`}>
+<PageLayout title={`${categoryLabel} — ${SITE_TITLE}`} description={`Posts about ${categoryLabel}`}>
 	<main>
-			<h1>{categoryMeta.label}</h1>
-			{posts.length === 0 ? (
-				<p class="empty">No posts yet — check back soon.</p>
-			) : (
-				<ul>
-					{posts.map((post, i) => (
+		<h1>{categoryLabel}</h1>
+		{posts.length === 0 ? (
+			<p class="empty">{tr.noPosts}</p>
+		) : (
+			<ul>
+				{posts.map((post, i) => {
+					const slug = post.id.replace(lang + '/', '');
+					return (
 						<li>
-							<a href={`/blog/${post.id}/`} style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
+							<a href={`/${lang}/blog/${slug}/`} style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
 								<div class="card-meta">
 									<FormattedDate date={post.data.pubDate} />
 								</div>
 								<div class="card-title">{post.data.title}</div>
-								{post.data.description && (
-									<div class="card-desc">{post.data.description}</div>
-								)}
+								{post.data.description && <div class="card-desc">{post.data.description}</div>}
 							</a>
 						</li>
-					))}
-				</ul>
-			)}
+					);
+				})}
+			</ul>
+		)}
 	</main>
 </PageLayout>
 
@@ -86,7 +90,7 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 		margin-bottom: 0.35rem;
 	}
 	.card-title {
-		font-family: 'Cormorant Garamond', serif;
+		font-family: 'Outfit', system-ui, sans-serif;
 		font-size: 1.4rem;
 		font-weight: 600;
 		color: var(--text);

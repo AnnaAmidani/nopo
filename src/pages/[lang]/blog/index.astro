@@ -1,39 +1,48 @@
 ---
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-import { CATEGORIES, SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-import PageLayout from '../../layouts/PageLayout.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../../consts';
+import { SUPPORTED_LANGS, t, type Lang } from '../../../i18n/translations';
+import PageLayout from '../../../layouts/PageLayout.astro';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+export function getStaticPaths() {
+	return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const tr = t(lang);
+
+const posts = (await getCollection('blog'))
+	.filter((p) => p.id.startsWith(lang + '/'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavender)', 'var(--accent-peach)', 'var(--accent-lime)'];
 ---
 
-<PageLayout title={`Blog — ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+<PageLayout title={`${tr.allPostsLabel} — ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
 	<main>
-			<h1>All Posts</h1>
-			<ul>
-				{posts.map((post, i) => (
+		<h1>{tr.allPostsLabel}</h1>
+		<ul>
+			{posts.map((post, i) => {
+				const slug = post.id.replace(lang + '/', '');
+				return (
 					<li>
-						<a href={`/blog/${post.id}/`} style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
+						<a href={`/${lang}/blog/${slug}/`} style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
 							<div class="card-meta">
 								<FormattedDate date={post.data.pubDate} />
 								{post.data.category && (
-									<a href={`/${post.data.category}`} class="category-badge" onclick="event.stopPropagation()">
-										{CATEGORIES.find((c) => c.slug === post.data.category)?.label}
+									<a href={`/${lang}/${post.data.category}`} class="category-badge" onclick="event.stopPropagation()">
+										{tr.categories[post.data.category as keyof typeof tr.categories]}
 									</a>
 								)}
 							</div>
 							<div class="card-title">{post.data.title}</div>
-							{post.data.description && (
-								<div class="card-desc">{post.data.description}</div>
-							)}
+							{post.data.description && <div class="card-desc">{post.data.description}</div>}
 						</a>
 					</li>
-				))}
-			</ul>
+				);
+			})}
+		</ul>
 	</main>
 </PageLayout>
 

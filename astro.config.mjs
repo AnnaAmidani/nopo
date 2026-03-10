@@ -10,5 +10,12 @@ const isCI = process.env.GITHUB_ACTIONS === 'true';
 export default defineConfig({
 	site: 'https://annaamidani.github.io',
 	base: isCI ? '/nopo' : '/',
+	i18n: {
+		defaultLocale: 'en',
+		locales: ['en', 'it'],
+		routing: {
+			prefixDefaultLocale: true,
+		},
+	},
 	integrations: [mdx(), sitemap()],
 });
