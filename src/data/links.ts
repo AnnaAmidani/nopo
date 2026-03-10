@@ -22,7 +22,8 @@ export const SIDEBAR_LINKS: SidebarSection[] = [
 		section: 'Bio',
 		links: [
 			{ label: 'About me', url: '/about', description: 'Who I am and what I write about' },
-			{ label: 'GitHub', url: 'https://github.com', description: 'My open-source projects' },
+			{ label: 'GitHub', url: 'https://github.com/AnnaAmidani', description: 'My projects on Github' },
+			{ label: 'Substack', url: 'https://substack.com/@annaa2905', description: 'Follow me on Substack' },
 			{ label: 'RSS Feed', url: '/rss.xml', description: 'Subscribe to new posts' },
 		],
 	},
