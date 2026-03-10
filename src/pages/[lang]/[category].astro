@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { CATEGORIES, SITE_TITLE } from '../../consts';
+import { SUPPORTED_LANGS, t, type Lang } from '../../i18n/translations';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+export function getStaticPaths() {
+	return SUPPORTED_LANGS.flatMap((lang) =>
+		CATEGORIES.map(({ slug }) => ({ params: { lang, category: slug } }))
+	);
+}
+
+const { lang, category } = Astro.params as { lang: Lang; category: string };
+const tr = t(lang);
+const categoryLabel = tr.categories[category as keyof typeof tr.categories] ?? category;
+
+const posts = (await getCollection('blog'))
+	.filter((p) => p.id.startsWith(lang + '/') && p.data.category === category)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavender)', 'var(--accent-peach)'];
+---
+
+<PageLayout title={`${categoryLabel} — ${SITE_TITLE}`} description={`Posts about ${categoryLabel}`}>
+	<main>
+		<h1>{categoryLabel}</h1>
+		{posts.length === 0 ? (
+			<p class="empty">{tr.noPosts}</p>
+		) : (
+			<ul>
+				{posts.map((post, i) => {
+					const slug = post.id.replace(lang + '/', '');
+					return (
+						<li>
+							<a href={`/${lang}/blog/${slug}/`} style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
+								<div class="card-meta">
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<div class="card-title">{post.data.title}</div>
+								{post.data.description && <div class="card-desc">{post.data.description}</div>}
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+		)}
+	</main>
+</PageLayout>
+
+<style>
+	h1 {
+		margin-bottom: 2rem;
+	}
+	.empty {
+		color: var(--text-muted);
+		font-style: italic;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+	ul li a {
+		display: block;
+		padding: 1.25rem 1.5rem;
+		background: var(--bg-card);
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		border-left: 4px solid var(--card-accent);
+		text-decoration: none;
+		color: inherit;
+		box-shadow: var(--shadow);
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+	ul li a:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-hover);
+		text-decoration: none;
+	}
+	.card-meta {
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin-bottom: 0.35rem;
+	}
+	.card-title {
+		font-family: 'Outfit', system-ui, sans-serif;
+		font-size: 1.4rem;
+		font-weight: 600;
+		color: var(--text);
+		line-height: 1.3;
+		margin-bottom: 0.35rem;
+	}
+	.card-desc {
+		font-size: 0.88rem;
+		color: var(--text-muted);
+		line-height: 1.5;
+	}
+</style>
