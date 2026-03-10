@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## General Rules
+
+- Always run commands from the project directory (`/Users/annaamidani/Projects/nopo`). If unsure, run `pwd` first.
+- When installing dev tools, use user-local installations only. Never use `sudo` for package manager installs.
+- When making styling changes (colors, fonts, layout), confirm choices with the user before applying broadly.
+
 ## Commands
 
 ```sh
