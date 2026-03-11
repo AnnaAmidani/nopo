@@ -11,7 +11,7 @@ test('EN home page loads and shows site title', async ({ page }) => {
 test('IT home page loads and shows Italian welcome text', async ({ page }) => {
   await page.goto('/it/');
   await expect(page.getByRole('heading', { name: SITE_TITLE, level: 1 })).toBeVisible();
-  await expect(page.locator('body')).toContainText('Benvenuto');
+  await expect(page.locator('body')).toContainText('Benvenuto su');
 });
 
 test('lang switcher navigates from EN to IT', async ({ page }) => {
