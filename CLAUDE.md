@@ -8,6 +8,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - When installing dev tools, use user-local installations only. Never use `sudo` for package manager installs.
 - When making styling changes (colors, fonts, layout), confirm choices with the user before applying broadly.
 
+## Branching Strategy
+
+Trunk-based development, team of 2. Default to `main`; use short-lived branches only when the work warrants it.
+
+- **Commit directly to `main`** for small, self-contained changes: content edits, config tweaks, doc updates, single-file fixes.
+- **Short-lived branch → PR → merge → delete branch** for anything spanning multiple commits, touching `src/` production files, or carrying meaningful risk.
+
+When in doubt, prefer a branch.
+
 ## Setup
 
 Node.js >= 22.12.0 is required. Astro is a local dependency — no global install needed.
