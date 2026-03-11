@@ -27,6 +27,12 @@ describe('TRANSLATIONS', () => {
       for (const [key, value] of Object.entries(TRANSLATIONS[lang])) {
         if (typeof value === 'string') {
           expect(value, `TRANSLATIONS.${lang}.${key} is empty`).not.toBe('');
+        } else if (typeof value === 'object' && value !== null) {
+          for (const [subKey, subValue] of Object.entries(value)) {
+            if (typeof subValue === 'string') {
+              expect(subValue, `TRANSLATIONS.${lang}.${key}.${subKey} is empty`).not.toBe('');
+            }
+          }
         }
       }
     }
