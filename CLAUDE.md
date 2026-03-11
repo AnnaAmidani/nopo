@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Overview
+A blog built with [Astro 6](https://astro.build), supporting English and Italian content. 
+NoPo is my personal blog, a space to talk about myself and my interests, work and life experiences, curious facts I've come across after moving from my home country, Italy - to Ireland, the UK and Canada.
+
 ## General Rules
 
 - Always run commands from the project directory (`/Users/annaamidani/Projects/apps/nopo`). If unsure, run `pwd` first.

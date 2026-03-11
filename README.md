@@ -1,6 +1,7 @@
 # nopo
 
-A personal blog built with [Astro 6](https://astro.build), supporting English and Italian content.
+A blog built with [Astro 6](https://astro.build), supporting English and Italian content. 
+NoPo is my personal blog, a space to talk about myself and my interests, work and life experiences, curious facts I've come across after moving from my home country, Italy - to Ireland, the UK and Canada.
 
 ## Setup
 
