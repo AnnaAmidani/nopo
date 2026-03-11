@@ -7,7 +7,7 @@ const basePath = isCI ? '/nopo' : '';
 export default defineConfig({
   testDir: './tests/e2e',
   use: {
-    baseURL: `http://localhost:4321${basePath}`,
+    baseURL: `http://localhost:4321${basePath}/`,
   },
   webServer: {
     command: 'npm run preview',

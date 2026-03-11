@@ -2,7 +2,7 @@
 import { expect, test } from '@playwright/test';
 
 test('category bar links all resolve without error', async ({ page }) => {
-  await page.goto('/en/');
+  await page.goto('en/');
   const navLinks = page.locator('.category-bar a');
   const hrefs = await navLinks.evaluateAll((links) =>
     links.map((a) => (a as HTMLAnchorElement).getAttribute('href')).filter(Boolean)
@@ -17,12 +17,12 @@ test('category bar links all resolve without error', async ({ page }) => {
 });
 
 test('about page loads', async ({ page }) => {
-  await page.goto('/en/about/');
+  await page.goto('en/about/');
   await expect(page).toHaveURL(/\/en\/about/);
-  await expect(page.locator('h1')).toHaveText('About');
+  await expect(page.getByRole('heading', { name: 'About', level: 1 })).toBeVisible();
 });
 
 test('root JS redirect navigates to /en/', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('./');
   await expect(page).toHaveURL(/\/en\/$/);
 });
