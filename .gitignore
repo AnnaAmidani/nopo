@@ -12,13 +12,22 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
+.env.local
+.env.*.local
 .env.production
+
+# TypeScript
+*.tsbuildinfo
 
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# IDE
 .idea/
+.vscode/
+
+# Playwright
+test-results/
+playwright-report/
