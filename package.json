@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:unit": "vitest run"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.0-beta.9",
