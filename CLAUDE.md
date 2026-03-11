@@ -3,14 +3,24 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-A blog built with [Astro 6](https://astro.build), supporting English and Italian content. 
-NoPo is my personal blog, a space to talk about myself and my interests, work and life experiences, curious facts I've come across after moving from my home country, Italy - to Ireland, the UK and Canada.
+
+This is an [Astro 6](https://astro.build) blog project using TypeScript, CSS, and Markdown content, supporting English and Italian content. 
+Key commands:
+- `npm run dev` — start dev server
+- `npm run build` — production build
+- `npm test` — run tests
+- `npm run lint` — run linter
+Always run `npm run build` after significant changes to catch errors early.
 
 ## General Rules
 
 - Always run commands from the project directory (`/Users/annaamidani/Projects/apps/nopo`). If unsure, run `pwd` first.
 - When installing dev tools, use user-local installations only. Never use `sudo` for package manager installs.
 - When making styling changes (colors, fonts, layout), confirm choices with the user before applying broadly.
+
+
+## Git Workflow
+- Before creating PRs or running GitHub CLI commands, verify `gh` is installed and authenticated by running `gh auth status`. If unavailable, provide the manual GitHub URL instead.
 
 ## Branching Strategy
 
@@ -77,6 +87,8 @@ All lang-scoped pages are under `src/pages/[lang]/`:
 
 `src/styles/global.css` defines CSS custom properties: `--accent`, `--accent-sage`, `--accent-lavender`, `--accent-peach`, `--accent-lime`, `--text`, `--text-muted`, `--bg`, `--bg-card`, `--bg-subtle`, `--border`, `--shadow`, `--shadow-hover`, `--radius`, `--max-width`. Dark mode is automatic via `prefers-color-scheme`. Component styles are scoped inline in each `.astro` file.
 
+- When modifying UI styles (colors, fonts, spacing), always verify that required font weights/variants are imported before using them. Check the `<link>` tags or CSS imports.
+
 ### Site Constants
 
 `src/consts.ts` exports `SITE_TITLE` and `SITE_DESCRIPTION`. The canonical URL and base path are set in `astro.config.mjs`. In CI (`GITHUB_ACTIONS=true`) the base is `/nopo`; locally it's `/`.
@@ -84,3 +96,5 @@ All lang-scoped pages are under `src/pages/[lang]/`:
 ### Deployment
 
 GitHub Actions (`.github/workflows/deploy.yml`) builds and deploys to GitHub Pages on push to `main`. The `GITHUB_ACTIONS` env var toggles the base URL.
+
+
