@@ -19,10 +19,10 @@ test('category bar links all resolve without error', async ({ page }) => {
 test('about page loads', async ({ page }) => {
   await page.goto('/en/about/');
   await expect(page).toHaveURL(/\/en\/about/);
-  await expect(page.locator('body')).toBeVisible();
+  await expect(page.locator('h1')).toHaveText('About');
 });
 
 test('root redirects to /en/', async ({ page }) => {
   await page.goto('/');
-  await expect(page).toHaveURL(/\/en\//);
+  await expect(page).toHaveURL(/\/en\/$/);
 });
