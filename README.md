@@ -25,6 +25,18 @@ npx astro check   # type-check .astro files
 npx astro add     # add integrations
 ```
 
+## Testing
+
+Tests run automatically as part of every build. To run them manually:
+
+```sh
+npm run test:unit     # Vitest unit tests (fast, no browser)
+npx astro build       # build first if running E2E standalone
+npm run test:e2e      # Playwright E2E tests (requires dist/ to exist)
+```
+
+Unit tests cover i18n translation completeness and site constants. E2E tests cover page rendering, navigation, and language switching using Chromium.
+
 ## Linting
 
 ```sh

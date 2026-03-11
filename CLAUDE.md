@@ -26,9 +26,11 @@ npm run build        # Build production site to ./dist/
 npm run preview      # Preview production build locally
 npm run lint         # Lint with ESLint (Astro + TypeScript rules)
 npx astro check      # Type-check .astro files
+npm run test:unit    # Vitest unit tests (fast, no browser)
+npm run test:e2e     # Playwright E2E (requires built dist/)
 ```
 
-There is no test suite configured.
+Unit tests: `tests/unit/` (Vitest). E2E tests: `tests/e2e/` (Playwright, Chromium). Both run automatically as part of `npm run build`.
 
 ## Architecture
 
