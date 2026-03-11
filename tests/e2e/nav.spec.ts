@@ -22,7 +22,7 @@ test('about page loads', async ({ page }) => {
   await expect(page.locator('h1')).toHaveText('About');
 });
 
-test('root redirects to /en/', async ({ page }) => {
+test('root JS redirect navigates to /en/', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveURL(/\/en\/$/);
 });
