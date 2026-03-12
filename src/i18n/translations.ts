@@ -14,6 +14,7 @@ export const TRANSLATIONS = {
 			music: 'Music',
 			films: 'Films',
 			culture: 'Culture',
+			food: 'Food',
 		},
 	},
 	it: {
@@ -31,6 +32,7 @@ export const TRANSLATIONS = {
 			music: 'Musica',
 			films: 'Film',
 			culture: 'Cultura',
+			food: 'Cibo',
 		},
 	},
 } as const;
