@@ -29,16 +29,16 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 				{posts.map((post, i) => {
 					const slug = post.id.replace(lang + '/', '');
 					return (
-						<li>
-							<a href={`/${lang}/blog/${slug}/`} style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
-								<div class="card-meta">
-									<FormattedDate date={post.data.pubDate} />
-									{post.data.category && (
-										<a href={`/${lang}/${post.data.category}`} class="category-badge" onclick="event.stopPropagation()">
-											{tr.categories[post.data.category as keyof typeof tr.categories]}
-										</a>
-									)}
-								</div>
+						<li style={`--card-accent: ${cardAccents[i % cardAccents.length]}`}>
+							<div class="card-meta">
+								<FormattedDate date={post.data.pubDate} />
+								{post.data.category && (
+									<a href={`/${lang}/${post.data.category}/`} class="category-badge">
+										{tr.categories[post.data.category as keyof typeof tr.categories]}
+									</a>
+								)}
+							</div>
+							<a href={`/${lang}/blog/${slug}/`} class="card-link">
 								<div class="card-title">{post.data.title}</div>
 								{post.data.description && <div class="card-desc">{post.data.description}</div>}
 							</a>
@@ -62,22 +62,18 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 		flex-direction: column;
 		gap: 0.75rem;
 	}
-	ul li a {
-		display: block;
+	ul li {
 		padding: 1.25rem 1.5rem;
 		background: var(--bg-card);
 		border-radius: var(--radius);
 		border: 1px solid var(--border);
 		border-left: 4px solid var(--card-accent);
-		text-decoration: none;
-		color: inherit;
 		box-shadow: var(--shadow);
 		transition: transform 0.2s, box-shadow 0.2s;
 	}
-	ul li a:hover {
+	ul li:hover {
 		transform: translateY(-2px);
 		box-shadow: var(--shadow-hover);
-		text-decoration: none;
 	}
 	.card-meta {
 		display: flex;
@@ -91,20 +87,27 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 		margin-bottom: 0.35rem;
 	}
 	.category-badge {
-		font-size: 0.68rem;
+		font-size: 0.72rem;
 		font-weight: 700;
-		letter-spacing: 0.07em;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--accent);
-		background: rgba(12, 119, 121, 0.08);
-		border: 1px solid rgba(12, 119, 121, 0.2);
-		border-radius: 99px;
-		padding: 0.1rem 0.55rem;
 		text-decoration: none;
-		transition: background 0.15s;
+	}
+	.category-badge::before {
+		content: '·';
+		margin-right: 0.4em;
+		color: var(--text-muted);
 	}
 	.category-badge:hover {
-		background: rgba(12, 119, 121, 0.15);
+		text-decoration: underline;
+	}
+	.card-link {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+	}
+	.card-link:hover {
 		text-decoration: none;
 	}
 	.card-title {
