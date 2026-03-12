@@ -9,6 +9,7 @@ export function getStaticPaths() {
 	return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const { lang } = Astro.params as { lang: Lang };
 const tr = t(lang);
 
@@ -33,12 +34,12 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 							<div class="card-meta">
 								<FormattedDate date={post.data.pubDate} />
 								{post.data.category && (
-									<a href={`/${lang}/${post.data.category}/`} class="category-badge">
+									<a href={`${base}/${lang}/${post.data.category}/`} class="category-badge">
 										{tr.categories[post.data.category as keyof typeof tr.categories]}
 									</a>
 								)}
 							</div>
-							<a href={`/${lang}/blog/${slug}/`} class="card-link">
+							<a href={`${base}/${lang}/blog/${slug}/`} class="card-link">
 								<div class="card-title">{post.data.title}</div>
 								{post.data.description && <div class="card-desc">{post.data.description}</div>}
 							</a>
