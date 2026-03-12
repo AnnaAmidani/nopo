@@ -141,21 +141,20 @@ const cardAccents = ['var(--accent)', 'var(--accent-sage)', 'var(--accent-lavend
 		margin-bottom: 0.35rem;
 	}
 	.category-badge {
-		font-size: 0.68rem;
+		font-size: 0.72rem;
 		font-weight: 700;
-		letter-spacing: 0.07em;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--accent);
-		background: rgba(12, 119, 121, 0.08);
-		border: 1px solid rgba(12, 119, 121, 0.2);
-		border-radius: 99px;
-		padding: 0.1rem 0.55rem;
 		text-decoration: none;
-		transition: background 0.15s;
+	}
+	.category-badge::before {
+		content: '·';
+		margin-right: 0.4em;
+		color: var(--text-muted);
 	}
 	.category-badge:hover {
-		background: rgba(12, 119, 121, 0.15);
-		text-decoration: none;
+		text-decoration: underline;
 	}
 	.card-title {
 		font-family: 'Outfit', system-ui, sans-serif;
