@@ -167,6 +167,84 @@ textarea, input {
 	h2 { font-size: 1.6rem; }
 }
 
+/* ── Blog post components ── */
+
+/* Scrollable table wrapper for mobile */
+.table-wrapper {
+	overflow-x: auto;
+	margin: 1.5rem 0 0.25rem;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border);
+}
+.table-wrapper table {
+	margin: 0;
+	border: none;
+	font-size: 0.875rem;
+}
+.table-wrapper th {
+	background: var(--accent);
+	color: var(--bg);
+	border-color: var(--accent);
+}
+.table-wrapper td { border-color: var(--border); }
+.table-wrapper tr:nth-child(even) td { background: var(--bg-subtle); }
+.table-wrapper tr.highlight-row td { background: var(--bg-subtle); font-weight: 600; }
+.table-wrapper tr:last-child td { border-bottom: none; }
+.table-wrapper caption {
+	caption-side: top;
+	text-align: left;
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: var(--text-muted);
+	padding: 0.5rem 0.9rem 0.25rem;
+}
+.table-source {
+	font-size: 0.8rem;
+	color: var(--text-muted);
+	font-style: italic;
+	margin-top: 0.25rem;
+	margin-bottom: 1.5rem;
+}
+
+/* Callouts */
+.callout {
+	border-radius: var(--radius-sm);
+	padding: 1rem 1.25rem;
+	margin: 1.5rem 0;
+	font-size: 0.95rem;
+	line-height: 1.6;
+}
+.callout strong {
+	display: block;
+	margin-bottom: 0.3rem;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+.callout p { margin: 0; }
+.callout-blue  { background: var(--bg-subtle); border-left: 4px solid var(--accent); }
+.callout-blue strong  { color: var(--accent); }
+.callout-amber { background: #fffbeb; border-left: 4px solid #d97706; }
+.callout-amber strong { color: #b45309; }
+.callout-red   { background: #fff1f2; border-left: 4px solid #e11d48; }
+.callout-red strong   { color: #be123c; }
+
+/* Article footer (model assumptions etc.) */
+.article-footer {
+	margin-top: 3rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--border);
+	font-size: 0.85rem;
+	color: var(--text-muted);
+}
+.article-footer details summary {
+	cursor: pointer;
+	font-weight: 600;
+	color: var(--text-muted);
+	margin-bottom: 0.5rem;
+}
+.article-footer p { margin-top: 0.5rem; line-height: 1.6; }
+
 .sr-only {
 	position: absolute;
 	width: 1px;

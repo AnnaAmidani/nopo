@@ -1,0 +1,579 @@
+---
+title: "AI vs. Developers: A Cost Analysis for Teams of Every Size"
+description: "A detailed breakdown of what AI tools actually cost compared to human developers, with cost models for small startups, mid-size companies, and enterprises — plus a framework for finding the right human-AI balance."
+pubDate: 2026-03-12
+updatedDate: 2026-03-12
+category: "tech"
+---
+
+<aside class="callout callout-blue" role="note">
+  <strong>One thing that surprised me</strong>
+  <p>The companies seeing the biggest efficiency gains from AI aren't the ones replacing developers. They're the ones restructuring what developers actually do.</p>
+</aside>
+
+## The question everyone's running spreadsheets on
+
+By now the question isn't whether AI can write code. It can. The question people are actually losing sleep over is how much developer headcount to replace, what to augment, and whether anyone has run the numbers properly. I have.
+
+I looked at three staffing models across three company sizes and put cost and output on the same axis. The goal isn't a hot take. It's a number you can actually use.
+
+Short version: full human teams cost too much, and full AI replacement breaks in ways nobody wants to admit out loud. What works is somewhere in the middle. Where exactly depends on whether you're a 5-person startup burning runway or a 200-person company trying to justify headcount to a board.
+
+---
+
+## First: what things actually cost
+
+### The true cost of a developer
+
+Salaries are only part of what you're paying. Add payroll taxes, benefits, equipment, software licenses, onboarding time, and the management overhead nobody budgets for, and the real number is 1.25–1.35× the base salary. A $130k mid-level developer costs closer to $169k all-in.
+
+<div class="table-wrapper" role="region" aria-label="Developer total annual cost by seniority">
+<table>
+  <caption>Total annual employer cost by developer seniority (US market, 2026)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Seniority</th>
+      <th scope="col">Base Salary</th>
+      <th scope="col">Total Annual Cost</th>
+      <th scope="col">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Junior Developer</td>
+      <td>$90,000</td>
+      <td><strong>$117,000</strong></td>
+      <td>0–3 yrs experience</td>
+    </tr>
+    <tr>
+      <td>Mid-level Developer</td>
+      <td>$130,000</td>
+      <td><strong>$169,000</strong></td>
+      <td>3–7 yrs experience</td>
+    </tr>
+    <tr>
+      <td>Senior Developer</td>
+      <td>$175,000</td>
+      <td><strong>$228,000</strong></td>
+      <td>7+ yrs, architecture, leadership</td>
+    </tr>
+    <tr>
+      <td>Blended avg (40/40/20 mix)</td>
+      <td>$128,000</td>
+      <td><strong>$166,000</strong></td>
+      <td>Typical team composition</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p class="table-source">Source: Levels.fyi, Bureau of Labor Statistics, Glassdoor (2025–2026 averages, US market). European developers average 30–50% lower; Latin American and Eastern European talent 50–70% lower.</p>
+
+### What AI tools actually cost per developer
+
+The range here is enormous and that's worth pausing on. You can spend $228 a year on GitHub Copilot or $24,000 a year on an autonomous coding agent like Devin. Those are not the same thing, and the ROI math looks completely different.
+
+<div class="table-wrapper" role="region" aria-label="AI developer tool costs per year">
+<table>
+  <caption>AI developer tool costs per seat per year (2026)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Tool / Category</th>
+      <th scope="col">Type</th>
+      <th scope="col">Cost / Developer / Year</th>
+      <th scope="col">Best for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GitHub Copilot Business</td>
+      <td>AI autocomplete</td>
+      <td>$228</td>
+      <td>In-IDE code suggestions</td>
+    </tr>
+    <tr>
+      <td>Cursor Pro</td>
+      <td>AI IDE</td>
+      <td>$240</td>
+      <td>Full codebase context</td>
+    </tr>
+    <tr>
+      <td>Claude for Teams</td>
+      <td>AI assistant</td>
+      <td>$360</td>
+      <td>Planning, review, docs</td>
+    </tr>
+    <tr>
+      <td>Windsurf (Codeium)</td>
+      <td>AI IDE</td>
+      <td>$180</td>
+      <td>Budget Copilot alternative</td>
+    </tr>
+    <tr>
+      <td>Devin / SWE-Agent</td>
+      <td>Autonomous agent</td>
+      <td>$6,000–$24,000</td>
+      <td>End-to-end task execution</td>
+    </tr>
+    <tr>
+      <td>Custom AI pipeline (API)</td>
+      <td>Automation</td>
+      <td>$6,000–$20,000</td>
+      <td>CI/CD, testing, data tasks</td>
+    </tr>
+    <tr>
+      <td><strong>Full augmentation stack*</strong></td>
+      <td>Hybrid</td>
+      <td><strong>~$1,500</strong></td>
+      <td>Daily dev workflow</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p class="table-source">*Full augmentation stack = Copilot + Cursor + Claude for Teams. Autonomous agent costs reflect monthly subscription tiers (e.g., Devin at ~$500–$2,000/month).</p>
+
+### The productivity multiplier — and its limits
+
+The GitHub Copilot impact study, a 2024 MIT working paper, and a handful of internal reports from larger engineering orgs all cluster around the same range: AI-assisted developers are 1.3× to 1.8× faster on routine, well-defined work. Boilerplate, CRUD, tests, documentation. For anything requiring real architecture or judgment, that multiplier drops to roughly 1.0×. Humans still lead there, and I don't think that changes soon.
+
+For this analysis I use 1.5× as a working number. Conservative, but it holds up across a realistic mix of work.
+
+<aside class="callout callout-blue" role="note">
+  <strong>The one number to remember</strong>
+  <p>AI augmentation saves roughly one developer-day per week, per engineer. That's the conservative, repeatable figure the evidence actually supports.</p>
+</aside>
+
+---
+
+## Three models, three company sizes
+
+For this analysis I looked at three ways to staff a dev team, measured across three company sizes. The comparison unit is "developer equivalent output" (DEO) — how much gets shipped relative to a full-time human developer. Imperfect, but it makes the tradeoffs visible.
+
+**Model A** is your baseline: all humans, minimal AI beyond whatever devs already use. **Model B** is the AI-augmented hybrid: a smaller team with AI tools baked in, each developer operating at 1.5×. **Model C** is AI-first: a thin layer of senior engineers overseeing agents that handle most execution-level work.
+
+### Small companies (2–20 people): 5-developer baseline
+
+A 5-person dev team is typical for a funded startup. The pressure here is burn rate. AI helps a lot at this scale, mostly because every dollar saved is another few weeks of runway, and you can restructure faster than a large org.
+
+<div class="table-wrapper" role="region" aria-label="Cost comparison for small companies">
+<table>
+  <caption>Annual cost comparison — small company (5-developer baseline)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Model</th>
+      <th scope="col">Team composition</th>
+      <th scope="col">Annual cost</th>
+      <th scope="col">DEO</th>
+      <th scope="col">Cost per DEO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A — Full human</td>
+      <td>5 developers (blended)</td>
+      <td>$830,000</td>
+      <td>5.0</td>
+      <td>$166,000</td>
+    </tr>
+    <tr class="highlight-row">
+      <td><strong>B — AI-augmented ✓</strong></td>
+      <td>3 devs + 1 senior + AI tools</td>
+      <td><strong>$695,000</strong></td>
+      <td><strong>5.3</strong></td>
+      <td><strong>$131,000</strong></td>
+    </tr>
+    <tr>
+      <td>C — AI-first</td>
+      <td>1 senior + 4 AI agent slots</td>
+      <td>$388,000</td>
+      <td>3.2</td>
+      <td>$121,000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<aside class="callout callout-amber" role="note">
+  <strong>My read</strong>
+  <p>Model B saves ~$135k/year while delivering slightly more output. Model C cuts costs in half but loses 36% of output capacity and carries real quality risk. At 5 devs, that's a lot of risk to carry.</p>
+</aside>
+
+For small companies: go Model B. Replace 1–2 mid-level hires with AI tooling, keep at least one senior to hold architecture together, and redeploy the savings into product. Model C only makes sense if the product is narrow and the work is genuinely repetitive — which most early-stage products aren't.
+
+### Mid-size companies (20–200 people): 20-developer baseline
+
+At 20 developers you have enough senior engineers to build real oversight into the process and enough repetitive work to run agent tactics on specific task types without the whole thing falling over. Small companies can't really do Model C safely. Mid-size ones can — selectively.
+
+<div class="table-wrapper" role="region" aria-label="Cost comparison for mid-size companies">
+<table>
+  <caption>Annual cost comparison — mid-size company (20-developer baseline)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Model</th>
+      <th scope="col">Team composition</th>
+      <th scope="col">Annual cost</th>
+      <th scope="col">DEO</th>
+      <th scope="col">Cost per DEO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A — Full human</td>
+      <td>18 devs + 2 seniors</td>
+      <td>$3,420,000</td>
+      <td>20.0</td>
+      <td>$171,000</td>
+    </tr>
+    <tr class="highlight-row">
+      <td><strong>B — AI-augmented ✓</strong></td>
+      <td>12 devs + 3 seniors + AI tools (15)</td>
+      <td><strong>$2,490,000</strong></td>
+      <td><strong>22.5</strong></td>
+      <td><strong>$111,000</strong></td>
+    </tr>
+    <tr>
+      <td>C — AI-first</td>
+      <td>5 seniors + 2 AI leads + 15 agents</td>
+      <td>$1,734,000</td>
+      <td>13.5</td>
+      <td>$128,000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<aside class="callout callout-amber" role="note">
+  <strong>My read</strong>
+  <p>Model B is the clear winner here: 12% more output at 27% lower cost. Model C is cheaper per seat but only delivers 67% of baseline output. At mid-scale, managing AI agents starts generating real coordination overhead that the numbers don't fully capture.</p>
+</aside>
+
+Run Model B as your default. Deploy agents selectively on test generation, data pipelines, and internal tooling — that's the work that's high-volume and low-stakes enough to trust them. Keep humans in front of anything user-facing, and don't kid yourself about where that line is.
+
+### Enterprise (200+ people): 100-developer baseline
+
+At enterprise scale, the cost of coordination and the value of institutional knowledge start to rival the cost of headcount itself. AI can cut costs sharply on commoditized engineering work, but the oversight layer becomes a discipline in its own right.
+
+<div class="table-wrapper" role="region" aria-label="Cost comparison for enterprise companies">
+<table>
+  <caption>Annual cost comparison — enterprise (100-developer baseline)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Model</th>
+      <th scope="col">Team composition</th>
+      <th scope="col">Annual cost</th>
+      <th scope="col">DEO</th>
+      <th scope="col">Cost per DEO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A — Full human</td>
+      <td>85 devs + 15 seniors</td>
+      <td>$16,820,000</td>
+      <td>100</td>
+      <td>$168,000</td>
+    </tr>
+    <tr class="highlight-row">
+      <td><strong>B — AI-augmented ✓</strong></td>
+      <td>60 devs + 15 seniors + AI tools (75)</td>
+      <td><strong>$12,713,000</strong></td>
+      <td><strong>112</strong></td>
+      <td><strong>$114,000</strong></td>
+    </tr>
+    <tr>
+      <td>C — AI-first</td>
+      <td>25 seniors + 5 AI leads + 70 agents</td>
+      <td>$8,430,000</td>
+      <td>70</td>
+      <td>$120,000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<aside class="callout callout-amber" role="note">
+  <strong>My read</strong>
+  <p>Model B saves $4.1M/year while increasing output by 12%. Model C saves more but delivers only 70% of baseline, and at this scale that output gap is real product velocity you're not shipping. A blended B+C approach is usually right.</p>
+</aside>
+
+For enterprise: run Model B on core product engineering, use Model C selectively for platform, infrastructure, and internal automation. The one thing worth investing in that most companies skip: the AI platform engineering function. Someone needs to build, maintain, and govern the tooling itself.
+
+---
+
+## Not all code is the same
+
+### A framework for deciding who does what
+
+The biggest mistake I see when companies deploy AI is treating all development work as interchangeable. It isn't. A CRUD endpoint and a new auth system are not the same kind of work, and they shouldn't go through the same process. The right model for any task depends on two things: how novel does it need to be, and how often do you do it.
+
+<div class="table-wrapper" role="region" aria-label="Task complexity matrix">
+<table>
+  <caption>Task complexity matrix: which model fits which work</caption>
+  <thead>
+    <tr>
+      <th scope="col">Task type</th>
+      <th scope="col">Complexity</th>
+      <th scope="col">Frequency</th>
+      <th scope="col">Recommended model</th>
+      <th scope="col">Human role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>System architecture &amp; design</td>
+      <td>Very high</td>
+      <td>Low</td>
+      <td>Human only</td>
+      <td>Full ownership</td>
+    </tr>
+    <tr>
+      <td>Security &amp; compliance code</td>
+      <td>High</td>
+      <td>Medium</td>
+      <td>Human + AI assist</td>
+      <td>Human reviews all output</td>
+    </tr>
+    <tr>
+      <td>Feature development (novel)</td>
+      <td>High</td>
+      <td>Medium</td>
+      <td>AI-augmented dev</td>
+      <td>Human drives, AI assists</td>
+    </tr>
+    <tr>
+      <td>Feature development (CRUD/UI)</td>
+      <td>Medium</td>
+      <td>High</td>
+      <td>AI-augmented dev</td>
+      <td>Human reviews &amp; ships</td>
+    </tr>
+    <tr>
+      <td>Test generation</td>
+      <td>Low</td>
+      <td>Very high</td>
+      <td>AI-first</td>
+      <td>Human spot-checks</td>
+    </tr>
+    <tr>
+      <td>Documentation &amp; comments</td>
+      <td>Low</td>
+      <td>High</td>
+      <td>AI-first</td>
+      <td>Human approves</td>
+    </tr>
+    <tr>
+      <td>Boilerplate &amp; scaffolding</td>
+      <td>Low</td>
+      <td>High</td>
+      <td>AI-first</td>
+      <td>Human reviews diff</td>
+    </tr>
+    <tr>
+      <td>Bug fixes (known patterns)</td>
+      <td>Low–medium</td>
+      <td>High</td>
+      <td>AI-first</td>
+      <td>Human validates fix</td>
+    </tr>
+    <tr>
+      <td>Data pipelines &amp; ETL</td>
+      <td>Medium</td>
+      <td>Medium</td>
+      <td>AI-first</td>
+      <td>Human monitors output</td>
+    </tr>
+    <tr>
+      <td>Code review (initial pass)</td>
+      <td>Low–medium</td>
+      <td>Very high</td>
+      <td>AI-first</td>
+      <td>Human makes final call</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+### The human-in-the-loop rule
+
+Humans should never be fully out of the loop for anything that ships to users or touches critical systems. This isn't a philosophical position. It's risk management. AI coding agents still hallucinate. They introduce subtle bugs. They miss context that lives in Slack threads and old product specs rather than in the codebase. Someone has to catch that.
+
+The process that actually works: AI generates, human validates, human approves for production. The step that gets companies into trouble is skipping the middle one — especially when things seem fine.
+
+<aside class="callout callout-red" role="note">
+  <strong>The question worth asking before every AI task</strong>
+  <p>Not "can AI do this?" but "what's the blast radius if it gets it wrong?" Size your oversight accordingly.</p>
+</aside>
+
+### A quick scoring model
+
+Before handing a task to AI, run it through three quick questions:
+
+- **Novelty (1–5):** How original does the solution need to be? New architecture = 5; CRUD endpoint = 1.
+- **Stakes (1–5):** What breaks if this is wrong? Auth system = 5; internal admin page = 1.
+- **Repetition (1–5):** How often does this task recur? Daily test runs = 5; one-off migration = 1.
+
+Calculate **(Novelty + Stakes) / Repetition.** Above 2.5, lean human-led with AI assisting. Below 1.5, AI-first is appropriate. Everything in the middle benefits from genuine pairing — not just tab-completion, but actual back-and-forth.
+
+---
+
+## The costs that don't appear on pricing pages
+
+Cost models look clean on a spreadsheet. Reality is messier. Here are the costs that will quietly eat your ROI if you don't plan for them.
+
+### Supervision overhead
+
+Managing AI agents isn't free. Someone has to review outputs, catch errors, maintain prompts, update context, and deal with the 20% of tasks where the AI gets it subtly wrong — wrong in ways that compile, pass lint, and still fail in production. Budget 0.3–0.5 FTE of senior developer time per agent slot. That's a real number and it needs to be in your model.
+
+### Technical debt from AI-generated code
+
+AI code tends toward the locally correct answer — the one that pattern-matches to its training data, not the one that fits your specific system. Without strong code review, AI-heavy teams accumulate technical debt faster than they realize. The debt doesn't show up in velocity metrics until it does, and then it's expensive. Budget for architecture and cleanup time, or you'll pay it back at scale with interest.
+
+### Institutional knowledge walking out the door
+
+AI tools don't know your product history, your customers, or the three approaches you tried and abandoned in Q3 of last year. That knowledge lives in people. As you cut headcount, you reduce the store of context that makes AI outputs actually useful rather than just plausible. Before scaling AI, invest heavily in documentation, decision logs, and structured handoffs.
+
+### Restructuring costs
+
+Moving to an AI-augmented model isn't instantaneous. Developer training runs $2,000–$5,000 per person. Some people will leave — not everyone wants to work this way. Recruiting AI-fluent senior engineers runs 15–25% of annual salary in fees. These are one-time costs, but they're real, and they usually don't show up in the initial ROI calculation.
+
+---
+
+## What to do, depending on what you build
+
+Company type matters as much as size. Same headcount, different product, different answer.
+
+### Product-led SaaS
+
+Your product is the codebase. Human judgment matters for UX, performance, and whatever actually differentiates you from the next SaaS in the category. Move to Model B aggressively, but protect that 30% of senior dev time. Don't automate your competitive advantage away.
+
+### Internal tooling and IT
+
+Internal dashboards, data pipelines, automation scripts, admin panels — this is the work AI handles best. High volume, low novelty, small blast radius if something goes wrong. Shift it to Model C and redeploy the human time toward product. Easiest win available.
+
+### Agencies and consultancies
+
+Client-facing code requires accountability, and contractually, a human owns the deliverable. Model B is your default. The margin expansion from AI tools at agencies is real — capture it, don't just pass it on to clients as lower rates.
+
+### Regulated industries: fintech, healthtech
+
+Compliance and auditability cap how far you can push AI-first. Model B is roughly the ceiling for most regulated codebases. The best use of AI here is test coverage — low risk, high volume, and it directly reduces compliance exposure. Budget for extra review cycles.
+
+---
+
+## What I'd actually tell you
+
+Shrink your team by 20–30%, give everyone real AI tooling, and use the savings to extend runway or put it back into product. That move works consistently in the numbers. It's not dramatic, but it's the thing I keep coming back to.
+
+Full AI replacement breaks in ways that are hard to see until you're already in trouble. Output drops. Quality drifts. And rebuilding a team after cutting too deep takes 6–18 months — there's no fast undo.
+
+A human in the loop isn't overhead. It's accountability. Someone who reads the diff, understands what changed, and gets called at 2am if the auth system ships broken. That's load-bearing. Make it leaner. Don't make it optional.
+
+<aside class="callout callout-blue" role="note">
+  <strong>Final take</strong>
+  <p>Move fast on AI augmentation. Move slowly on headcount cuts. And get a human to actually read AI output before it goes anywhere near production.</p>
+</aside>
+
+---
+
+## One thing this model can't tell you
+
+Every number in this article assumes AI tool pricing stays roughly where it is today. That's a real assumption, and it might not hold. There are structural pressures pushing costs in both directions, and anyone who tells you they know which way this goes is guessing.
+
+### The case for rising costs
+
+Start with energy. Running large language models is genuinely power-hungry, and it's getting more so. Inference — the cost of every API call your team makes — compounds fast at scale. Goldman Sachs projected in 2024 that AI could drive a 160% increase in data center power demand by 2030. Cloud providers will pass that cost downstream.
+
+Then there's the pricing-to-acquire problem. Right now, GitHub Copilot, Cursor, Anthropic, and OpenAI are buying market share, not maximizing margins. Once your engineering workflow is built around a specific tool and switching feels painful, that calculation changes. You'll notice when it does.
+
+And as models get more capable, the features that actually move the needle tend to live in the higher tiers. You start on the $19/month plan and end up on an enterprise contract with API overage charges you didn't model.
+
+<aside class="callout callout-red" role="note">
+  <strong>Worth flagging</strong>
+  <p>Today's AI tool costs are acquisition pricing. Budget for 2–4× increases over a five-year horizon, especially if you're building heavily on API usage or autonomous agent workloads.</p>
+</aside>
+
+### The case for falling costs
+
+The counterargument is also real. AI compute costs have dropped roughly 10× every two years since 2020, according to Epoch AI. That trend may slow, but it hasn't stopped. Hardware advances — next-gen GPUs, Google's TPUs, Amazon's Trainium chips — continue to improve price-per-FLOP.
+
+Open-source models are closing the gap with proprietary ones faster than most people expected. Llama, Mistral, Qwen — self-hosting is increasingly viable for high-volume tasks, which eliminates per-token pricing risk entirely. And there are enough serious competitors in this market that aggressive repricing by any single vendor would trigger migration. The competitive floor is real.
+
+### How to think about it
+
+The risk is asymmetric. Falling costs cap your upside — you save more money. Rising costs are open-ended, and companies that have cut headcount deeply based on today's AI pricing are the most exposed. Rebuilding a team takes 6–18 months. There's no fast undo.
+
+<div class="table-wrapper" role="region" aria-label="5-year AI cost scenario matrix">
+<table>
+  <caption>5-year AI cost scenario matrix and mitigation strategies</caption>
+  <thead>
+    <tr>
+      <th scope="col">Scenario</th>
+      <th scope="col">Likelihood (5yr)</th>
+      <th scope="col">Impact on Model B</th>
+      <th scope="col">Impact on Model C</th>
+      <th scope="col">Mitigation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AI costs fall 50%</td>
+      <td>Moderate</td>
+      <td>ROI improves further</td>
+      <td>Model C viable for more teams</td>
+      <td>Capture the gain — reinvest in product</td>
+    </tr>
+    <tr>
+      <td>AI costs stay flat</td>
+      <td>Low</td>
+      <td>Current models hold</td>
+      <td>Current models hold</td>
+      <td>Lock in multi-year contracts where possible</td>
+    </tr>
+    <tr>
+      <td>AI costs rise 2×</td>
+      <td>Moderate</td>
+      <td>Model B ROI narrows (~15%)</td>
+      <td>Model C may break even with A</td>
+      <td>Audit AI spend quarterly; maintain human capacity</td>
+    </tr>
+    <tr>
+      <td>AI costs rise 4×+</td>
+      <td>Low–moderate</td>
+      <td>Model B becomes marginal</td>
+      <td>Model C is uneconomical</td>
+      <td>Self-hosting, open-source fallback, renegotiate</td>
+    </tr>
+    <tr>
+      <td>Energy crisis / rationing</td>
+      <td>Low</td>
+      <td>All models disrupted</td>
+      <td>Most exposed</td>
+      <td>Geographic vendor diversification</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+What to actually do about it:
+
+- Treat AI tool costs as variable OPEX, not fixed infrastructure. Review AI spend quarterly. Pricing and usage patterns shift faster than annual budget cycles can track.
+- Avoid single-vendor dependency. Build workflows so that switching providers is a sprint, not a quarter. Standardize on APIs over proprietary UIs.
+- Watch the open-source frontier. Self-hosting is increasingly viable for high-volume, lower-stakes tasks, and it eliminates per-token cost risk entirely.
+- Stress-test your model at 2× and 3× current AI pricing. If your profitability or team structure breaks, you're over-indexed on today's costs.
+- Ask your AI vendors what percentage of their pricing is energy-linked. This is rare today. It won't be in two years.
+
+<aside class="callout callout-amber" role="note">
+  <strong>The real hedge</strong>
+  <p>The hybrid model isn't just an efficiency play. If AI costs spike and you've kept a functioning human team, you can absorb it. If you've cut to the bone, you can't.</p>
+</aside>
+
+---
+
+<footer class="article-footer">
+  <details>
+    <summary>Model assumptions</summary>
+    <p>All cost figures are US-market 2025–2026 estimates. Developer cost = base salary × 1.3 (benefits + payroll taxes + overhead). AI agent costs reflect mid-tier subscription and API usage. Productivity multipliers based on the GitHub Copilot Impact Study (2023), MIT Sloan (2024), and Stanford HAI (2024). DEO (Developer Equivalent Output) is an approximation — actual results vary by team, codebase complexity, and AI tool maturity.</p>
+  </details>
+</footer>
+
