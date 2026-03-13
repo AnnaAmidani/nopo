@@ -5,7 +5,7 @@ const today = new Date();
 <footer>
 	<div class="footer-stripe"></div>
 	<div class="footer-inner">
-		<a href="/" class="footer-title">NoPo</a>
+		<a href="/" class="footer-title">Born in NoPo</a>
 		<nav class="footer-nav">
 			<a href="/blog">Blog</a>
 			<a href="/about">About</a>
@@ -39,12 +39,15 @@ const today = new Date();
 		font-weight: 700;
 		font-size: 1.5rem;
 		letter-spacing: -0.02em;
-		color: white;
+		background: linear-gradient(90deg, #ffffff 0%, #fde6b0 45%, #d4a060 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 		text-decoration: none;
-		transition: color 0.2s;
+		transition: opacity 0.2s;
 	}
 	.footer-title:hover {
-		color: var(--accent);
+		opacity: 0.8;
 		text-decoration: none;
 	}
 	.footer-nav {
