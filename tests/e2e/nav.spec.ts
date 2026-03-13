@@ -20,6 +20,8 @@ test('about page loads', async ({ page }) => {
   await page.goto('en/about/');
   await expect(page).toHaveURL(/\/en\/about/);
   await expect(page.getByRole('heading', { name: 'About', level: 1 })).toBeVisible();
+  const photo = page.locator('img[alt="Photo of Anna Amidani"]');
+  await expect(photo).toBeVisible();
 });
 
 test('root JS redirect navigates to /en/', async ({ page }) => {
