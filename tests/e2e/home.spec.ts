@@ -5,7 +5,7 @@ import { SITE_TITLE } from '../../src/consts';
 test('EN home page loads and shows site title', async ({ page }) => {
   await page.goto('en/');
   await expect(page.getByRole('heading', { name: SITE_TITLE, level: 1 })).toBeVisible();
-  await expect(page.getByRole('link', { name: SITE_TITLE })).toBeVisible();
+  await expect(page.getByRole('banner').getByRole('link', { name: SITE_TITLE })).toBeVisible();
 });
 
 test('IT home page loads and shows Italian welcome text', async ({ page }) => {
