@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import profilePhoto from '../../assets/Toronto-last-supper-7-cut.png';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { marked } from 'marked';
 import { SUPPORTED_LANGS, t, type Lang } from '../../i18n/translations';
 
 export function getStaticPaths() {
@@ -18,7 +19,7 @@ const tr = t(lang);
 	pubDate={new Date('August 08 2021')}
 >
 	<Image src={profilePhoto} alt="Photo of Anna Amidani" class="profile-photo" />
-	{tr.aboutContent.map((para) => <p>{para}</p>)}
+	{tr.aboutContent.map((para) => <p set:html={marked.parseInline(String(para))} />)}
 </BlogPost>
 
 <style>
